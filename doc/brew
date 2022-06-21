@@ -1,0 +1,10 @@
+# BREW note and doc
+
+# This shows all the services currently running by brew
+brew services list
+
+# Restarts the services
+brew services restart <service_name>
+
+# Stops the service
+brew services stop <service_name>

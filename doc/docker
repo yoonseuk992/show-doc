@@ -1,0 +1,46 @@
+# Run a new Container
+docker run <IMAGE> # Start a new container form an image
+docker run --name <CONTAINER> <IMAGE> # Start a new container with a name
+docker run -p <HOST_PORT>:<CONTAINER_PORT> <IMAGE> # Start a new container with port
+docker run -d <IMAGE> # Start a new container in the background
+docker run --hostname <HOST_NAME> <IMAGE> # Assign a host name
+docker run --add-host <HOST_NAME>:<IP> <IMAGE> # Add a DNS entry
+docker run -v <HOST_DIR>:<TARGET_DIR> <IMAGE> # Map a local directory into the container
+docker run -it --entrypoint <EXECUTABLE> <IMAGE> # Change the entrypoint
+
+# Container Management
+docker ps # To list all running Docker containers
+docker ps -a # To list all containers, both running and stopped
+docker ps -aq # To list containers by their ID use -aq
+docker ps -s # To list containers size
+docker ps -l # To list the latest created containers
+docker rm <CONTAINER> # Delete a container
+docker rm -f <CONTAINER> # Delete a running container
+docker container prune # Delete stopped containers
+docker stop <CONTAINER>  # Stop a container
+docker start <CONTAINER> # Start a stopped container
+docker cp <CONTAINER>:<SOURCE> <TARGET> # Copy a file from container to the host
+docker exec -it <CONTAINER> bash # Start a shell inside a running container
+docker rename <OLD_NAME> <NEW_NAME> # Rename a container
+docker commit <CONTAINER> # Create an image out of container
+
+# Manage Images
+docker pull <IMAGE>:<TAG> # Download an image
+docker push <IMAGE> # Upload an image to a repository
+docker rmi <IMAGE> # Delete an image
+docker images # Show a list of images
+docker image prune # delete dangling images
+docker build <DIRECTORY> # Build an image from a Dockerfile
+docker tag <IMAGE> <NEW_IMAGE>:<VERSION_TAG> # Tag an image
+docker build -t <IMAGE> <DIRECTORY> # Build and tag an image from Dockerfile
+docker save <IMAGE> > <FILE_NAME>.tar # Save an image to tar file
+docker load -i <TARFILE> # load an image from tar file
+
+# Info & Stats
+docker logs <CONTAINER> # Show the logs of a container
+docker stats # Show stats of running containers
+docker top <CONTAINER> # Show processes of container
+docker version # Show installed docker version
+docker inspect <NAME> # Get detailed info about an object
+docker diff <CONTAINER> # Show all modified files in container
+docker port <CONTAINER> # Show mapped ports of a container

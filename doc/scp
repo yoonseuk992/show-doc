@@ -1,0 +1,1 @@
+scp -i <path-to-.pem> -r <path-to-file> <host>:<path-to-be-copied>

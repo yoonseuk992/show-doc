@@ -1,0 +1,8 @@
+#To install a python version
+pyenv install <version>
+
+#To install a virtualenv 
+pyenv virtualenv <python_version> <name_of_virtualenv>
+
+#To run the virualenv
+pyenv local <name_of_virtualenv>

@@ -1,0 +1,34 @@
+1. Create the dump.pgdata binary dump of a DB named "my-db" directly from within a container or your local DB
+
+pg_dump -U postgres --format custom my-db > "dump.pgdata"
+
+*Or from host from running container (postgres-container)
+
+docker exec postgres-container pg_dump -U postgres --format custom my-db > "dump.pgdata"
+
+2. Create a Docker image with a given dump and initialization script
+
+$ tree
+.
+├── Dockerfile
+└── docker-entrypoint-initdb.d
+    ├── 01-restore.sh
+    ├── 02-small-updates.sql
+    └── dump.pgdata
+
+$ cat Dockerfile
+FROM postgres:11
+
+COPY ./docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
+$ cat docker-entrypoint-initdb.d/01-restore.sh
+#!/bin/bash
+
+file="/docker-entrypoint-initdb.d/dump.pgdata"
+dbname=my-db
+
+echo "Restoring DB using $file"
+pg_restore -U postgres --dbname=$dbname --verbose --single-transaction < "$file" || exit 1
+$ cat docker-entrypoint-initdb.d/02-small-updates.sql
+-- some updates on your DB, for example for next application version
+-- this file will be executed on DB during next release
+UPDATE ... ;

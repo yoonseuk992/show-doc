@@ -1,0 +1,3 @@
+
+# To checkout specific file
+git checkout <branch> -- <path>

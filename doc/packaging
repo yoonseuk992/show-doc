@@ -1,0 +1,6 @@
+
+# to build tar.gz
+python setup.py sdist
+
+# To build wheel
+python setup.py bdist_wheel
